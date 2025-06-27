@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import * as images from "../../assets";
-import AppWrap from '../../wrapper/AppWrap'; 
+import AppWrap from '../../Wrapper/AppWrap'; 
 import './Footer.scss';
 import Resume from '../../assets/Resume.pdf';
 import MotionWrap1 from '../../Wrapper/MotionRap1';
@@ -22,9 +22,9 @@ const Footer = () => {
     e.preventDefault();
     setLoading(true);
 
-    const serviceID = 'service_k1a6tge';
-    const templateID = 'template_sazcqck';
-    const publicKey = 'aWc7P5TvPDFbNT4hg';
+const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     const templateParams = {
       from_name: username,
