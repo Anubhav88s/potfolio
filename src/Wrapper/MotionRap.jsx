@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
+//to give animation to all the components
 const MotionWrap = (Component, classNames) => function HOC() {
   return (
     <motion.div
