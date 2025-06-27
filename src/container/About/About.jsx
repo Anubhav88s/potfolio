@@ -2,8 +2,8 @@ import React ,{ useState , useEffect } from 'react'
 import './About.scss'
 import{ motion } from 'framer-motion';
 import * as images from "../../assets"; // relative path from Navbar.jsx
-import AppWrap from "../../wrapper/AppWrap";
-import MotionWrap from '../../wrapper/MotionRap';
+import AppWrap from "../../Wrapper/AppWrap";
+import MotionWrap from '../../Wrapper/MotionRap';
 
 
 

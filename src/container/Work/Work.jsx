@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { AiFillEye, AiFillGithub } from 'react-icons/ai';
-import AppWrap from '../../wrapper/AppWrap'; // Adjust if AppWrap is elsewhere
+import AppWrap from '../../Wrapper/AppWrap'; // Adjust if AppWrap is elsewhere
 import './Work.scss'; // Make sure this file exists
 import * as images from "../../assets"; // relative path from Navbar.jsx
-import MotionWrap from '../../wrapper/MotionRap';
+import MotionWrap from '../../Wrapper/MotionRap';
 // Local works data
 const worksData = [
 

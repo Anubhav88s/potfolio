@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AppWrap from '../../wrapper/AppWrap';
+import AppWrap from '../../Wrapper/AppWrap';
 import './Skills.scss';
 import MotionWrap1 from "../../Wrapper/MotionRap1"
 
