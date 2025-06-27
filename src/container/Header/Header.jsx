@@ -2,7 +2,7 @@ import React from 'react'
 import './Header.scss'
 import {motion} from 'framer-motion'
 import * as images from "../../assets"; // relative path from Navbar.jsx
-import AppWrap from "../../wrapper/AppWrap";
+import AppWrap from '../../wrapper/AppWrap';
 
 const scaleVarients = {
   whileInView:{
