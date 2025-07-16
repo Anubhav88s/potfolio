@@ -19,7 +19,7 @@ const worksData = [
     {
     title: "Portfolio",
     description: "My portfolio website showcases my skills, projects, and achievements in web development. It includes detailed project descriptions, code repositories, and a contact section, providing a professional overview of my work, experience, and technical expertise in full-stack development.",
-    projectLink: "https://github.com/Anubhav88s/potfolio",
+    projectLink: "https://anubhav-eight.vercel.app/",
     codeLink: "https://github.com/Anubhav88s/potfolio",
     imgUrl: images.potfoliologo,
     tags: ["React.js"],
