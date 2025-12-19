@@ -1,65 +1,117 @@
-import Image from "next/image";
+'use client'
+
+import dynamic from 'next/dynamic'
+import { motion } from 'framer-motion'
+import { Download } from 'lucide-react'
+import Navbar from '@/components/Navbar'
+import About from '@/components/About'
+import Experience from '@/components/Experience'
+import Projects from '@/components/Projects'
+import Skills from '@/components/Skills'
+import Contact from '@/components/Contact'
+import Footer from '@/components/Footer'
+import FloatingSocials from '@/components/FloatingSocials'
+import WatermarkBlocker from '@/components/WatermarkBlocker'
+
+
+const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
+const Stars = dynamic(() => import('@/components/canvas/Stars'), { ssr: false })
+const Spline = dynamic(() => import('@splinetool/react-spline'), { ssr: false })
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="relative w-full min-h-screen text-white bg-black">
+      <Navbar />
+      <FloatingSocials />
+
+      {/* Background 3D Stars - Layer 1 (z-0) */}
+      <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+        <Scene>
+          <Stars />
+        </Scene>
+      </div>
+
+      <div className="fixed top-0 left-0 w-full h-full z-[1] pointer-events-auto opacity-80">
+        <Spline
+          scene="https://prod.spline.design/w4XzV4rpmJ6ohp8I/scene.splinecode"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+      </div>
+
+      <WatermarkBlocker />
+
+      {/* 
+        Main Page Content 
+        Using normal flow with Smooth Scroll (Lenis) for a premium feel
+        pointer-events-none on this layer allows events to reach Spline
+      */}
+      <div className="relative z-10 w-full pointer-events-none">
+
+        {/* Hero Section */}
+        <section className="h-screen w-full flex flex-col items-center justify-center relative snap-start">
+          <div className="text-center z-20 pointer-events-auto px-6">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 drop-shadow-2xl">
+              FULL STACK
+            </h1>
+            <div className="flex justify-center overflow-hidden">
+              {Array.from("DEVELOPER").map((letter, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.08,
+                    ease: [0.2, 0.65, 0.3, 0.9],
+                  }}
+                  className="text-5xl sm:text-7xl md:text-8xl font-black text-transparent drop-shadow-2xl inline-block"
+                  style={{ WebkitTextStroke: '1px rgba(255,255,255,0.3)' }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </div>
+            <p className="mt-6 text-base sm:text-xl text-purple-400 font-medium tracking-wide bg-black/40 backdrop-blur-md py-2 px-8 rounded-full inline-block border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.15)]">
+              Hey I am Anubhav Raj Singh
+            </p>
+            <div className="mt-10">
+              <motion.a
+                href="/assets/resume.pdf"
+                download="Anubhav_Resume"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5, duration: 0.8 }}
+                className="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transform hover:-translate-y-1"
+              >
+                <span className="flex items-center gap-3">
+                  Download Resume <Download size={20} className="group-hover:translate-y-1 transition-transform" />
+                </span>
+              </motion.a>
+            </div>
+          </div>
+
+          <div className="absolute bottom-10 left-0 w-full flex justify-center pointer-events-none">
+            <motion.div
+              animate={{ y: [0, 24, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+              className="w-[35px] h-[64px] rounded-3xl border-4 border-white/20 flex justify-center items-start p-2 backdrop-blur-sm"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              <motion.div
+                animate={{ y: [0, 24, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                className="w-3 h-3 rounded-full bg-white mb-1"
+              />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Individual components will have pointer-events-auto where needed */}
+        <About />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Contact />
+        <Footer />
+      </div>
+    </main>
   );
 }
